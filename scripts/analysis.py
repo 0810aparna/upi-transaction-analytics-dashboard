@@ -1,19 +1,19 @@
 def perform_analysis(df):
 
-    print("\\n===== ANALYSIS =====")
+    print("\n===== UPI ANALYSIS =====")
 
     total_transactions = len(df)
 
-    total_amount = df['Amount'].sum()
+    total_amount = df['amount'].sum()
 
-    print(f"Total Transactions: {total_transactions}")
+    print(f"\nTotal Transactions: {total_transactions}")
 
-    print(f"Total Amount: {total_amount}")
+    print(f"Total Amount: ₹{total_amount:,.2f}")
 
-    print("\\nTop States:")
+    print("\nTop States by Transaction Amount:")
 
     top_states = (
-        df.groupby('State')['Amount']
+        df.groupby('state')['amount']
         .sum()
         .sort_values(ascending=False)
         .head(10)
@@ -21,12 +21,10 @@ def perform_analysis(df):
 
     print(top_states)
 
-    print("\\nTop Merchant Categories:")
+    print("\nTransaction Status:")
 
-    categories = (
-        df['Merchant Category']
-        .value_counts()
-        .head(10)
-    )
+    print(df['status'].value_counts())
 
-    print(categories)
+    print("\nTop Merchant Categories:")
+
+    print(df['merchant_category'].value_counts().head(10))

@@ -3,9 +3,8 @@ import matplotlib.pyplot as plt
 
 def create_visualizations(df):
 
-    # State-wise transaction chart
     top_states = (
-        df.groupby('State')['Amount']
+        df.groupby('state')['amount']
         .sum()
         .sort_values(ascending=False)
         .head(10)
@@ -19,10 +18,10 @@ def create_visualizations(df):
 
     plt.xlabel('State')
 
-    plt.ylabel('Amount')
+    plt.ylabel('Transaction Amount')
 
     plt.tight_layout()
 
     plt.savefig('screenshots/top_states.png')
 
-    print("Visualization saved.")
+    print("\nVisualization saved successfully.")
